@@ -24,7 +24,7 @@
           </a-col>
           <a-col>
             <a-form-item label="检测状态" hidden="true">
-              <j-input v-model="queryParam.checkStatus" value="0"><var>0</var></j-input>
+              <j-input v-model="queryParam.checkStatus" placeholder="2"></j-input>
             </a-form-item>
           </a-col>
 
@@ -241,11 +241,6 @@
             dataIndex: 'checkUserName'
           },
           {
-            title:'检测流程',
-            align:"center",
-            dataIndex: 'checkProcedure'
-          },
-          {
             title:'检验设备',
             align:"center",
             dataIndex: 'checkDevice'
@@ -341,7 +336,6 @@
         fieldList.push({type:'string',value:'deliveryDep',text:'送检部门'})
         fieldList.push({type:'int',value:'checkUserId',text:'检验员id'})
         fieldList.push({type:'string',value:'checkUserName',text:'检验员名称'})
-        fieldList.push({type:'int',value:'checkProcedure',text:'检测流程'})
         fieldList.push({type:'int',value:'checkDevice',text:'检验设备'})
         fieldList.push({type:'date',value:'checkTime',text:'检测时间'})
         fieldList.push({type:'int',value:'evaluateTime',text:'预估完成所需要的时间'})

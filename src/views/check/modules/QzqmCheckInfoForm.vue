@@ -6,7 +6,7 @@
         <a-row>
           <a-col :span="8">
             <a-form-model-item label="流程卡号" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="workCode">
-              <a-input v-model="model.workCode" placeholder="请输入流程卡号"  ></a-input>
+              <a-input v-model="model.workCode" placeholder="请输入流程卡号"  @change="handleWorkCodeChange"></a-input>
             </a-form-model-item>
           </a-col>
 <!--          <a-col :span="12">
@@ -21,7 +21,7 @@
           </a-col>
           <a-col :span="8">
             <a-form-model-item label="物料名称" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="materialName">
-              <a-input v-model="model.materialName" placeholder="请输入物料名称"  ></a-input>
+              <a-input v-model:value="model.materialName" placeholder="请输入物料名称"  ></a-input>
             </a-form-model-item>
           </a-col>
         </a-row>
@@ -96,17 +96,12 @@
             </a-form-model-item>
           </a-col>
           <a-col :span="8">
-            <a-form-model-item label="检测流程" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="checkProcedure">
-              <a-input-number v-model="model.checkProcedure" placeholder="请输入检测流程" style="width: 100%" />
-            </a-form-model-item>
-          </a-col>
-        </a-row>
-        <a-row>
-          <a-col :span="8">
             <a-form-model-item label="检验设备" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="checkDevice">
               <a-input-number v-model="model.checkDevice" placeholder="请输入检验设备" style="width: 100%" />
             </a-form-model-item>
           </a-col>
+        </a-row>
+        <a-row>
           <a-col :span="8">
             <a-form-model-item label="检测时间" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="checkTime">
               <j-date placeholder="请选择检测时间" v-model="model.checkTime"  style="width: 100%" />
@@ -145,6 +140,8 @@
 
   import { httpAction, getAction } from '@/api/manage'
   import { validateDuplicateValue } from '@/utils/util'
+  import request from "request";
+  import debounce from "lodash/debounce";
 
   export default {
     name: 'QzqmCheckInfoForm',
@@ -230,7 +227,8 @@
         url: {
           add: "/check/qzqmCheckInfo/add",
           edit: "/check/qzqmCheckInfo/edit",
-          queryById: "/check/qzqmCheckInfo/queryById"
+          queryById: "/check/qzqmCheckInfo/queryById",
+          queryByWorkCode: "/check/qzqmCheckInfo/queryByWorkCode"
         }
       }
     },
@@ -280,6 +278,30 @@
          
         })
       },
+      handleWorkCodeChange: debounce(async function (event){
+        const workCode = event.target.value;
+        const response = await getAction(this.url.queryByWorkCode, {workCode});
+        this.model.materialCode = response.result.materialCode;
+        this.model.materialName = response.result.materialName;
+        this.model.specifications = response.result.specifications;
+        this.model.productDraw = response.result.productDraw;
+        this.model.customerName = response.result.customerName;
+        this.model.hardness = response.result.hardness;
+        this.model.process = response.result.process;
+        this.model.material = response.result.material;
+        this.model.deliveryTime = response.result.deliveryTime;
+        this.model.deliveryUserId = response.result.deliveryUserId;
+        this.model.deliveryUserName = response.result.deliveryUserName;
+        this.model.deliveryDep = response.result.deliveryDep;
+
+        this.model.checkUserId = response.result.checkUserId;
+        this.model.checkUserName = response.result.checkUserName;
+        this.model.deliveryDep = response.result.deliveryDep;
+        this.model.deliveryDep = response.result.deliveryDep;
+        this.model.deliveryDep = response.result.deliveryDep;
+
+        this.$forceUpdate();
+      },800),
     }
   }
 </script>

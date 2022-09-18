@@ -3,77 +3,72 @@
     <j-form-container :disabled="formDisabled">
       <a-form-model ref="form" :model="model" :rules="validatorRules" slot="detail">
         <a-row>
-          <a-col :span="24">
+          <a-col :span="8">
             <a-form-model-item label="流程卡号" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="workCode">
-              <a-input v-model="model.workCode" placeholder="请输入流程卡号"  ></a-input>
+              <a-input v-model="model.workCode" placeholder="请输入流程卡号"  @change="handleWorkCodeChange"></a-input>
             </a-form-model-item>
           </a-col>
-          <a-col :span="24">
-            <a-form-model-item label="检测编号" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="checkNo">
-              <a-input-number v-model="model.checkNo" placeholder="请输入检测编号" style="width: 100%" />
-            </a-form-model-item>
-          </a-col>
-          <a-col :span="24">
+          <a-col :span="8">
             <a-form-model-item label="物料号" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="materialCode">
               <a-input v-model="model.materialCode" placeholder="请输入物料号"  ></a-input>
             </a-form-model-item>
           </a-col>
-          <a-col :span="24">
+          <a-col :span="8">
             <a-form-model-item label="物料名称" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="materialName">
               <a-input v-model="model.materialName" placeholder="请输入物料名称"  ></a-input>
             </a-form-model-item>
           </a-col>
-          <a-col :span="24">
+          <a-col :span="8">
             <a-form-model-item label="物料规格" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="specifications">
               <a-input v-model="model.specifications" placeholder="请输入物料规格"  ></a-input>
             </a-form-model-item>
           </a-col>
-          <a-col :span="24">
+          <a-col :span="8">
             <a-form-model-item label="图号" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="productDraw">
               <a-input v-model="model.productDraw" placeholder="请输入图号"  ></a-input>
             </a-form-model-item>
           </a-col>
-          <a-col :span="24">
+          <a-col :span="8">
             <a-form-model-item label="客户名称" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="customerName">
               <a-input v-model="model.customerName" placeholder="请输入客户名称"  ></a-input>
             </a-form-model-item>
           </a-col>
-          <a-col :span="24">
+          <a-col :span="8">
             <a-form-model-item label="要求硬度" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="hardness">
               <a-input v-model="model.hardness" placeholder="请输入要求硬度"  ></a-input>
             </a-form-model-item>
           </a-col>
-          <a-col :span="24">
+          <a-col :span="8">
             <a-form-model-item label="当前工序" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="process">
               <a-input v-model="model.process" placeholder="请输入当前工序"  ></a-input>
             </a-form-model-item>
           </a-col>
-          <a-col :span="24">
+          <a-col :span="8">
             <a-form-model-item label="材质" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="material">
               <a-input v-model="model.material" placeholder="请输入材质"  ></a-input>
             </a-form-model-item>
           </a-col>
-          <a-col :span="24">
+          <a-col :span="8">
             <a-form-model-item label="送检时间" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="deliveryTime">
               <j-date placeholder="请选择送检时间"  v-model="model.deliveryTime" :show-time="true" date-format="YYYY-MM-DD HH:mm:ss" style="width: 100%" />
             </a-form-model-item>
           </a-col>
-          <a-col :span="24">
+          <a-col :span="8">
             <a-form-model-item label="送检人" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="deliveryUserId">
               <a-input v-model="model.deliveryUserId" placeholder="请输入送检人"  ></a-input>
             </a-form-model-item>
           </a-col>
-          <a-col :span="24">
+          <a-col :span="8">
             <a-form-model-item label="送检人姓名" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="deliveryUserName">
               <a-input v-model="model.deliveryUserName" placeholder="请输入送检人姓名"  ></a-input>
             </a-form-model-item>
           </a-col>
-          <a-col :span="24">
+          <a-col :span="8">
             <a-form-model-item label="送检部门" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="deliveryDep">
               <a-input v-model="model.deliveryDep" placeholder="请输入送检部门"  ></a-input>
             </a-form-model-item>
           </a-col>
-          <a-col :span="24">
+          <a-col :span="8">
             <a-form-model-item label="检验员id" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="checkUserId">
               <a-input-number v-model="model.checkUserId" placeholder="请输入检验员id" style="width: 100%" />
             </a-form-model-item>
@@ -88,6 +83,7 @@
 
   import { httpAction, getAction } from '@/api/manage'
   import { validateDuplicateValue } from '@/utils/util'
+  import debounce from "lodash/debounce";
 
   export default {
     name: 'QzqmUncheckedInfoForm',
@@ -164,7 +160,8 @@
         url: {
           add: "/check/qzqmCheckInfo/add",
           edit: "/check/qzqmCheckInfo/edit",
-          queryById: "/check/qzqmCheckInfo/queryById"
+          queryById: "/check/qzqmCheckInfo/queryById",
+          queryWorkState: "/check/qzqmCheckInfo/queryWorkState"
         }
       }
     },
@@ -214,6 +211,19 @@
          
         })
       },
+      handleWorkCodeChange: debounce(async function (event){
+        const workCode = event.target.value;
+        const response = await getAction(this.url.queryWorkState, {workCode});
+        this.model.materialName = response.result.materialName;
+        this.model.materialCode = response.result.materialCode;
+        this.model.specifications = response.result.desc1;
+        this.model.productDraw = response.result.productDraw;
+        this.model.customerName = response.result.receiptName;
+        this.model.hardness = response.result.desc2;
+        this.model.process = response.result.pStationName;
+        this.model.material = response.result.desc3;
+        this.$forceUpdate();
+      },800),
     }
   }
 </script>
