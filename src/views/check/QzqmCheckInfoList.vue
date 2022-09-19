@@ -165,7 +165,7 @@
           {
             title:'检测编号',
             align:"center",
-            dataIndex: 'checkNo'
+            dataIndex: 'id'
           },
           {
             title:'物料号',
@@ -274,12 +274,12 @@
           {
             title:'检测状态',
             align:"center",
-            dataIndex: 'checkStatus'
+            dataIndex: 'checkStatus_dictText'
           },
           {
-            title:'合格状态(0:未知，1:合格，2:不合格)',
+            title:'合格状态',
             align:"center",
-            dataIndex: 'qualifiedStatus'
+            dataIndex: 'qualifiedStatus_dictText'
           },
           {
             title:'是否已删除',

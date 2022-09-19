@@ -268,6 +268,14 @@
 
         this.$forceUpdate();
       },800),
+
+
+      handleDeliveryUserIdChange: debounce(async function (event){
+        const userId = event.target.value;
+        const response = await getAction(this.url.queryMesUser, {userId});
+        this.model.checkUserName = response.result.checkUserName;
+        this.$forceUpdate();
+      },800),
     }
   }
 </script>

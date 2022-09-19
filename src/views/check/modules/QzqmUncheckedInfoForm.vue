@@ -55,7 +55,7 @@
           </a-col>
           <a-col :span="8">
             <a-form-model-item label="送检人" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="deliveryUserId">
-              <a-input v-model="model.deliveryUserId" placeholder="请输入送检人"  ></a-input>
+              <a-input v-model="model.deliveryUserId" placeholder="请输入送检人" @change="handleDeliveryUserIdChange" ></a-input>
             </a-form-model-item>
           </a-col>
           <a-col :span="8">
@@ -66,11 +66,6 @@
           <a-col :span="8">
             <a-form-model-item label="送检部门" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="deliveryDep">
               <a-input v-model="model.deliveryDep" placeholder="请输入送检部门"  ></a-input>
-            </a-form-model-item>
-          </a-col>
-          <a-col :span="8">
-            <a-form-model-item label="检验员id" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="checkUserId">
-              <a-input-number v-model="model.checkUserId" placeholder="请输入检验员id" style="width: 100%" />
             </a-form-model-item>
           </a-col>
         </a-row>
@@ -153,15 +148,13 @@
            deliveryDep: [
               { required: true, message: '请输入送检部门!'},
            ],
-           checkUserId: [
-              { required: true, message: '请输入检验员id!'},
-           ],
         },
         url: {
           add: "/check/qzqmCheckInfo/add",
           edit: "/check/qzqmCheckInfo/edit",
           queryById: "/check/qzqmCheckInfo/queryById",
-          queryWorkState: "/check/qzqmCheckInfo/queryWorkState"
+          queryWorkState: "/check/qzqmCheckInfo/queryWorkState",
+          queryMesUser:"/check/qzqmCheckInfo/queryMesUser"
         }
       }
     },
@@ -220,8 +213,16 @@
         this.model.productDraw = response.result.productDraw;
         this.model.customerName = response.result.receiptName;
         this.model.hardness = response.result.desc2;
-        this.model.process = response.result.pStationName;
+        this.model.process = response.result.pstationName;
         this.model.material = response.result.desc3;
+        this.$forceUpdate();
+      },800),
+
+      handleDeliveryUserIdChange: debounce(async function (event){
+        const userId = event.target.value;
+        const response = await getAction(this.url.queryMesUser, {userId});
+        this.model.deliveryUserName = response.result.userName;
+        this.model.deliveryDep = response.result.dptName;
         this.$forceUpdate();
       },800),
     }
