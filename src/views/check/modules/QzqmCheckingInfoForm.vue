@@ -78,7 +78,7 @@
           </a-col>
           <a-col :span="8">
             <a-form-model-item label="检验员id" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="checkUserId">
-              <a-input-number v-model="model.checkUserId" placeholder="请输入检验员id" style="width: 100%" />
+              <a-input v-model="model.checkUserId" placeholder="请输入检验员id" @change="handleDeliveryUserIdChange"/>
             </a-form-model-item>
           </a-col>
           <a-col :span="8">
@@ -194,7 +194,8 @@
           add: "/check/qzqmCheckInfo/add",
           edit: "/check/qzqmCheckInfo/edit",
           queryById: "/check/qzqmCheckInfo/queryById",
-          queryByWorkCode: "/check/qzqmCheckInfo/queryByWorkCode"
+          queryByWorkCode: "/check/qzqmCheckInfo/queryByWorkCode",
+          queryMesUser:"/check/qzqmCheckInfo/queryMesUser"
         }
       }
     },
@@ -273,7 +274,7 @@
       handleDeliveryUserIdChange: debounce(async function (event){
         const userId = event.target.value;
         const response = await getAction(this.url.queryMesUser, {userId});
-        this.model.checkUserName = response.result.checkUserName;
+        this.model.checkUserName = response.result.userName;
         this.$forceUpdate();
       },800),
     }

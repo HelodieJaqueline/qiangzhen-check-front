@@ -243,7 +243,7 @@
           {
             title:'检验设备',
             align:"center",
-            dataIndex: 'checkDevice'
+            dataIndex: 'checkDevice_dictText'
           },
           {
             title:'检测时间',
@@ -280,11 +280,6 @@
             title:'合格状态',
             align:"center",
             dataIndex: 'qualifiedStatus_dictText'
-          },
-          {
-            title:'是否已删除',
-            align:"center",
-            dataIndex: 'isDeleted'
           },
           {
             title: '操作',

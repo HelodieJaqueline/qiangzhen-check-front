@@ -97,7 +97,7 @@
           </a-col>
           <a-col :span="8">
             <a-form-model-item label="检验设备" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="checkDevice">
-              <a-input-number v-model="model.checkDevice" placeholder="请输入检验设备" style="width: 100%" />
+              <j-dict-select-tag type="list" v-model="model.checkDevice" dictCode="checkDevice" placeholder="请选择检验设备" />
             </a-form-model-item>
           </a-col>
         </a-row>
@@ -117,12 +117,12 @@
         <a-row>
           <a-col :span="8">
             <a-form-model-item label="合格状态" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="qualifiedStatus">
-              <a-input-number v-model="model.qualifiedStatus" placeholder="请输入合格状态" style="width: 100%" />
+              <j-dict-select-tag type="list" v-model="model.qualifiedStatus" dictCode="qualifiedStatus" placeholder="请输入合格状态" />
             </a-form-model-item>
           </a-col>
           <a-col :span="8">
-            <a-form-model-item label="上传报告地址" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="reportUrl">
-              <a-input v-model="model.reportUrl" placeholder="请输入上传报告地址"  ></a-input>
+            <a-form-model-item label="报告上传" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="reportUrl">
+              <j-image-upload class="avatar-uploader" text="上传" v-model="model.reportUrl" ></j-image-upload>
             </a-form-model-item>
           </a-col>
           <a-col :span="8">
@@ -223,6 +223,12 @@
            qualifiedStatus: [
               { required: true, message: '请输入合格状态(0:未知，1:合格，2:不合格)!'},
            ],
+           reportUrl:[
+            { required: true, message: '请上传结果'},
+           ],
+           finishedTime:[
+             { required: true, message: '请输入结束时间'}
+           ],
         },
         url: {
           add: "/check/qzqmCheckInfo/add",
@@ -299,6 +305,13 @@
         this.model.deliveryDep = response.result.deliveryDep;
         this.model.deliveryDep = response.result.deliveryDep;
         this.model.deliveryDep = response.result.deliveryDep;
+
+        this.model.checkUserId = response.result.checkUserId;
+        this.model.checkUserName = response.result.checkUserName;
+        this.model.check = response.result.checkUserId;
+        this.model.checkUserId = response.result.checkUserId;
+
+
 
         this.$forceUpdate();
       },800),
