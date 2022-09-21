@@ -46,7 +46,7 @@
 
     <!-- 操作按钮区域 -->
     <div class="table-operator">
-      <a-button @click="handleAdd" type="primary" icon="plus">送检申请</a-button>
+<!--      <a-button @click="handleAdd" type="primary" icon="plus">送检申请</a-button>-->
 
       <!-- 高级查询区域 -->
       <!--      <j-super-query :fieldList="superFieldList" ref="superQueryModal" @handleSuperQuery="handleSuperQuery"></j-super-query>-->
