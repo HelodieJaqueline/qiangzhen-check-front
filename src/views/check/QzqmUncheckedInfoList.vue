@@ -151,7 +151,7 @@
         description: 'qzqm_check_info管理页面',
         // 表头
         columns: [
-          {
+/*          {
             title: '#',
             dataIndex: '',
             key:'rowIndex',
@@ -160,7 +160,7 @@
             customRender:function (t,r,index) {
               return parseInt(index)+1;
             }
-          },
+          },*/
           {
             title:'流程卡号',
             align:"center",
@@ -191,11 +191,11 @@
             align:"center",
             dataIndex: 'productDraw'
           },
-          {
+/*          {
             title:'客户名称',
             align:"center",
             dataIndex: 'customerName'
-          },
+          },*/
           {
             title:'要求硬度',
             align:"center",
@@ -246,7 +246,7 @@
           }
         ],
         url: {
-          list: "/check/qzqmCheckInfo/list",
+          list: "/check/qzqmCheckInfo/uncheckedList",
           delete: "/check/qzqmCheckInfo/delete",
           deleteBatch: "/check/qzqmCheckInfo/deleteBatch",
           exportXlsUrl: "/check/qzqmCheckInfo/exportXls",

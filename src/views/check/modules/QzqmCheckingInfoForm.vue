@@ -76,6 +76,9 @@
               <a-input v-model="model.deliveryDep" placeholder="请输入送检部门"  ></a-input>
             </a-form-model-item>
           </a-col>
+        </a-row>
+        <a-divider>检验信息</a-divider>
+        <a-row>
           <a-col :span="8">
             <a-form-model-item label="检验员id" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="checkUserId">
               <a-input v-model="model.checkUserId" placeholder="请输入检验员id" @change="handleDeliveryUserIdChange"/>
@@ -101,6 +104,24 @@
           <a-col :span="8">
             <a-form-model-item label="预估完成所需要的时间" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="evaluateTime">
               <a-input-number v-model="model.evaluateTime" placeholder="请输入预估完成所需要的时间" style="width: 100%" />
+            </a-form-model-item>
+          </a-col>
+        </a-row>
+        <a-divider>检验结果</a-divider>
+        <a-row>
+          <a-col :span="8">
+            <a-form-model-item label="合格状态" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="qualifiedStatus">
+              <j-dict-select-tag type="list" v-model="model.qualifiedStatus" dictCode="qualifiedStatus" placeholder="请输入合格状态" />
+            </a-form-model-item>
+          </a-col>
+          <a-col :span="8">
+            <a-form-model-item label="报告上传" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="reportUrl">
+              <j-image-upload class="avatar-uploader" text="上传" v-model="model.reportUrl" ></j-image-upload>
+            </a-form-model-item>
+          </a-col>
+          <a-col :span="8">
+            <a-form-model-item label="结束日期" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="finishedTime">
+              <j-date placeholder="请选择结束日期" v-model="model.finishedTime"  style="width: 100%" />
             </a-form-model-item>
           </a-col>
         </a-row>
@@ -192,7 +213,7 @@
         },
         url: {
           add: "/check/qzqmCheckInfo/add",
-          edit: "/check/qzqmCheckInfo/edit",
+          edit: "/check/qzqmCheckInfo/checked",
           queryById: "/check/qzqmCheckInfo/queryById",
           queryByWorkCode: "/check/qzqmCheckInfo/queryByWorkCode",
           queryMesUser:"/check/qzqmCheckInfo/queryMesUser"

@@ -151,7 +151,7 @@
         },
         url: {
           add: "/check/qzqmCheckInfo/add",
-          edit: "/check/qzqmCheckInfo/edit",
+          edit: "/check/qzqmCheckInfo/checking",
           queryById: "/check/qzqmCheckInfo/queryById",
           queryWorkState: "/check/qzqmCheckInfo/queryWorkState",
           queryMesUser:"/check/qzqmCheckInfo/queryMesUser"

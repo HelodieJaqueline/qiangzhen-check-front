@@ -104,9 +104,14 @@
         </template>
 
         <span slot="action" slot-scope="text, record">
-          <a @click="handleEdit(record)">编辑</a>
+<!--          <a @click="handleEdit(record)">编辑</a>-->
+          <a @click="handleDetail(record)">详情</a>
+           <a-divider type="vertical" />
+          <a-popconfirm title="确定删除吗?" @confirm="() => handleDelete(record.id)">
+              <a>删除</a>
+          </a-popconfirm>
 
-          <a-divider type="vertical" />
+<!--          <a-divider type="vertical" />
           <a-dropdown>
             <a class="ant-dropdown-link">更多 <a-icon type="down" /></a>
             <a-menu slot="overlay">
@@ -119,7 +124,7 @@
                 </a-popconfirm>
               </a-menu-item>
             </a-menu>
-          </a-dropdown>
+          </a-dropdown>-->
         </span>
 
       </a-table>
@@ -147,7 +152,7 @@
         description: 'qzqm_check_info管理页面',
         // 表头
         columns: [
-          {
+/*          {
             title: '#',
             dataIndex: '',
             key:'rowIndex',
@@ -156,7 +161,7 @@
             customRender:function (t,r,index) {
               return parseInt(index)+1;
             }
-          },
+          },*/
           {
             title:'流程卡号',
             align:"center",
@@ -187,11 +192,11 @@
             align:"center",
             dataIndex: 'productDraw'
           },
-          {
+/*          {
             title:'客户名称',
             align:"center",
             dataIndex: 'customerName'
-          },
+          },*/
           {
             title:'要求硬度',
             align:"center",
