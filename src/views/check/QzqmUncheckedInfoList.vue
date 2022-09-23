@@ -54,7 +54,7 @@
 
     <!-- 操作按钮区域 -->
     <div class="table-operator">
-      <a-button @click="handleAdd" type="primary" icon="plus">送检申请</a-button>
+      <a-button @click="handleAdd" v-has="'uncheck:add'" type="primary" icon="plus">送检申请</a-button>
 
       <!-- 高级查询区域 -->
       <!--      <j-super-query :fieldList="superFieldList" ref="superQueryModal" @handleSuperQuery="handleSuperQuery"></j-super-query>-->
@@ -108,7 +108,7 @@
         </template>
 
         <span slot="action" slot-scope="text, record">
-          <a @click="handleEdit(record)">编辑</a>
+          <a-button @click="handleEdit(record)" type="primary" icon="edit" v-has="'uncheck:edit'">编辑</a-button>
 
           <a-divider type="vertical" />
           <a-dropdown>

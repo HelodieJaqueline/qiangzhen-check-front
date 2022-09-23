@@ -7,7 +7,7 @@
         <a-row>
           <a-col :span="8">
             <a-form-model-item label="流程卡号" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="workCode">
-              <a-input v-model="model.workCode" placeholder="请输入流程卡号"  @change="handleWorkCodeChange"></a-input>
+              <a-input v-model="model.workCode" placeholder="请输入流程卡号"  @change="handleWorkCodeChange" disabled="disabled"></a-input>
             </a-form-model-item>
           </a-col>
           <a-col :span="8">
