@@ -5,7 +5,7 @@
       <a-form layout="inline" @keyup.enter.native="searchQuery">
         <a-row :gutter="24">
           <a-col :md="6" :sm="10">
-            <a-form-item label="创建时间" :labelCol="labelCol" :wrapperCol="wrapperCol">
+            <a-form-item label="筛选" :labelCol="labelCol" :wrapperCol="wrapperCol">
               <a-range-picker
                 style="width: 210px"
                 v-model="queryParam.createTimeRange"
@@ -215,10 +215,7 @@
           {
             title:'送检时间',
             align:"center",
-            dataIndex: 'deliveryTime',
-            customRender:function (text) {
-              return !text?"":(text.length>10?text.substr(0,10):text)
-            }
+            dataIndex: 'deliveryTime'
           },
           {
             title:'送检人',
@@ -253,10 +250,7 @@
           {
             title:'检测时间',
             align:"center",
-            dataIndex: 'checkTime',
-            customRender:function (text) {
-              return !text?"":(text.length>10?text.substr(0,10):text)
-            }
+            dataIndex: 'checkTime'
           },
           {
             title:'预估时间',
@@ -271,10 +265,7 @@
           {
             title:'结束日期',
             align:"center",
-            dataIndex: 'finishedTime',
-            customRender:function (text) {
-              return !text?"":(text.length>10?text.substr(0,10):text)
-            }
+            dataIndex: 'finishedTime'
           },
           {
             title:'检测状态',

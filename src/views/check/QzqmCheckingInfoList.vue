@@ -5,7 +5,7 @@
       <a-form layout="inline" @keyup.enter.native="searchQuery">
         <a-row :gutter="24">
           <a-col :md="6" :sm="10">
-            <a-form-item label="创建时间" :labelCol="labelCol" :wrapperCol="wrapperCol">
+            <a-form-item label="筛选" :labelCol="labelCol" :wrapperCol="wrapperCol">
               <a-range-picker
                 style="width: 210px"
                 v-model="queryParam.createTimeRange"
