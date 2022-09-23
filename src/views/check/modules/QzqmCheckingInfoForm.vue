@@ -2,6 +2,7 @@
   <a-spin :spinning="confirmLoading">
     <j-form-container :disabled="formDisabled">
       <a-form-model ref="form" :model="model" :rules="validatorRules" slot="detail">
+        <a-divider>送检信息</a-divider>
         <a-row>
           <a-col :span="8">
             <a-form-model-item label="流程卡号" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="workCode">
@@ -31,17 +32,12 @@
             </a-form-model-item>
           </a-col>
           <a-col :span="8">
-            <a-form-model-item label="客户名称" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="customerName">
-              <a-input v-model="model.customerName" placeholder="请输入客户名称"  ></a-input>
-            </a-form-model-item>
-          </a-col>
-        </a-row>
-        <a-row>
-          <a-col :span="8">
             <a-form-model-item label="要求硬度" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="hardness">
               <a-input v-model="model.hardness" placeholder="请输入要求硬度"  ></a-input>
             </a-form-model-item>
           </a-col>
+        </a-row>
+        <a-row>
           <a-col :span="8">
             <a-form-model-item label="当前工序" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="process">
               <a-input v-model="model.process" placeholder="请输入当前工序"  ></a-input>
@@ -52,13 +48,13 @@
               <a-input v-model="model.material" placeholder="请输入材质"  ></a-input>
             </a-form-model-item>
           </a-col>
-        </a-row>
-        <a-row>
           <a-col :span="8">
             <a-form-model-item label="送检时间" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="deliveryTime">
               <j-date placeholder="请选择送检时间"  v-model="model.deliveryTime" :show-time="true" date-format="YYYY-MM-DD HH:mm:ss" style="width: 100%" />
             </a-form-model-item>
           </a-col>
+        </a-row>
+        <a-row>
           <a-col :span="8">
             <a-form-model-item label="送检人" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="deliveryUserId">
               <a-input v-model="model.deliveryUserId" placeholder="请输入送检人"  ></a-input>
@@ -69,8 +65,6 @@
               <a-input v-model="model.deliveryUserName" placeholder="请输入送检人姓名"  ></a-input>
             </a-form-model-item>
           </a-col>
-        </a-row>
-        <a-row>
           <a-col :span="8">
             <a-form-model-item label="送检部门" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="deliveryDep">
               <a-input v-model="model.deliveryDep" placeholder="请输入送检部门"  ></a-input>
@@ -89,21 +83,21 @@
               <a-input v-model="model.checkUserName" placeholder="请输入检验员名称"  ></a-input>
             </a-form-model-item>
           </a-col>
-        </a-row>
-        <a-row>
           <a-col :span="8">
             <a-form-model-item label="检验设备" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="checkDevice">
               <j-dict-select-tag type="list" v-model="model.checkDevice" dictCode="checkDevice" placeholder="请选择检验设备" />
             </a-form-model-item>
           </a-col>
+        </a-row>
+        <a-row>
           <a-col :span="8">
             <a-form-model-item label="检测时间" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="checkTime">
               <j-date placeholder="请选择检测时间"  v-model="model.checkTime" :show-time="true" date-format="YYYY-MM-DD HH:mm:ss" style="width: 100%" />
             </a-form-model-item>
           </a-col>
           <a-col :span="8">
-            <a-form-model-item label="预估完成所需要的时间" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="evaluateTime">
-              <a-input-number v-model="model.evaluateTime" placeholder="请输入预估完成所需要的时间" style="width: 100%" />
+            <a-form-model-item label="预估时间" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="evaluateTime">
+              <a-input-number v-model="model.evaluateTime" placeholder="请输入预估时间" style="width: 100%" />
             </a-form-model-item>
           </a-col>
         </a-row>
@@ -154,7 +148,7 @@
          },
         labelCol: {
           xs: { span: 24 },
-          sm: { span: 5 },
+          sm: { span: 6 },
         },
         wrapperCol: {
           xs: { span: 24 },
@@ -179,9 +173,6 @@
            ],
            productDraw: [
               { required: true, message: '请输入图号!'},
-           ],
-           customerName: [
-              { required: true, message: '请输入客户名称!'},
            ],
            hardness: [
               { required: true, message: '请输入要求硬度!'},

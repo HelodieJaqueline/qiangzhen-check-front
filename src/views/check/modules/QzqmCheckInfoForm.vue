@@ -9,11 +9,6 @@
               <a-input v-model="model.workCode" placeholder="请输入流程卡号"  @change="handleWorkCodeChange"></a-input>
             </a-form-model-item>
           </a-col>
-<!--          <a-col :span="12">
-            <a-form-model-item label="检测编号" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="checkNo">
-              <a-input-number v-model="model.checkNo" placeholder="请输入检测编号" style="width: 100%" />
-            </a-form-model-item>
-          </a-col>-->
           <a-col :span="8">
             <a-form-model-item label="物料号" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="materialCode">
               <a-input v-model="model.materialCode" placeholder="请输入物料号"  ></a-input>
@@ -37,17 +32,12 @@
             </a-form-model-item>
           </a-col>
           <a-col :span="8">
-            <a-form-model-item label="客户名称" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="customerName">
-              <a-input v-model="model.customerName" placeholder="请输入客户名称"  ></a-input>
-            </a-form-model-item>
-          </a-col>
-        </a-row>
-        <a-row>
-          <a-col :span="8">
             <a-form-model-item label="要求硬度" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="hardness">
               <a-input v-model="model.hardness" placeholder="请输入要求硬度"  ></a-input>
             </a-form-model-item>
           </a-col>
+        </a-row>
+        <a-row>
           <a-col :span="8">
             <a-form-model-item label="当前工序" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="process">
               <a-input v-model="model.process" placeholder="请输入当前工序"  ></a-input>
@@ -58,13 +48,13 @@
               <a-input v-model="model.material" placeholder="请输入材质"  ></a-input>
             </a-form-model-item>
           </a-col>
-        </a-row>
-        <a-row>
           <a-col :span="8">
             <a-form-model-item label="送检时间" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="deliveryTime">
               <j-date placeholder="请选择送检时间" v-model="model.deliveryTime"  style="width: 100%" />
             </a-form-model-item>
           </a-col>
+        </a-row>
+        <a-row>
           <a-col :span="8">
             <a-form-model-item label="送检人" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="deliveryUserId">
               <a-input v-model="model.deliveryUserId" placeholder="请输入送检人"  ></a-input>
@@ -75,8 +65,6 @@
               <a-input v-model="model.deliveryUserName" placeholder="请输入送检人姓名"  ></a-input>
             </a-form-model-item>
           </a-col>
-        </a-row>
-        <a-row>
           <a-col :span="8">
             <a-form-model-item label="送检部门" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="deliveryDep">
               <a-input v-model="model.deliveryDep" placeholder="请输入送检部门"  ></a-input>
@@ -161,7 +149,7 @@
          },
         labelCol: {
           xs: { span: 24 },
-          sm: { span: 5 },
+          sm: { span: 6 },
         },
         wrapperCol: {
           xs: { span: 24 },
@@ -187,9 +175,9 @@
            productDraw: [
               { required: true, message: '请输入图号!'},
            ],
-           customerName: [
+/*           customerName: [
               { required: true, message: '请输入客户名称!'},
-           ],
+           ],*/
            hardness: [
               { required: true, message: '请输入要求硬度!'},
            ],

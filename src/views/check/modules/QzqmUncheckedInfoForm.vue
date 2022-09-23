@@ -2,6 +2,8 @@
   <a-spin :spinning="confirmLoading">
     <j-form-container :disabled="formDisabled">
       <a-form-model ref="form" :model="model" :rules="validatorRules" slot="detail">
+      <div>
+        <a-divider>送检信息</a-divider>
         <a-row>
           <a-col :span="8">
             <a-form-model-item label="流程卡号" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="workCode">
@@ -28,11 +30,11 @@
               <a-input v-model="model.productDraw" placeholder="请输入图号"  ></a-input>
             </a-form-model-item>
           </a-col>
-          <a-col :span="8">
+<!--          <a-col :span="8">
             <a-form-model-item label="客户名称" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="customerName">
               <a-input v-model="model.customerName" placeholder="请输入客户名称"  ></a-input>
             </a-form-model-item>
-          </a-col>
+          </a-col>-->
           <a-col :span="8">
             <a-form-model-item label="要求硬度" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="hardness">
               <a-input v-model="model.hardness" placeholder="请输入要求硬度"  ></a-input>
@@ -69,6 +71,39 @@
             </a-form-model-item>
           </a-col>
         </a-row>
+      </div>
+      <div v-if="model.id">
+        <a-divider>检验信息</a-divider>
+        <a-row>
+          <a-col :span="8">
+            <a-form-model-item label="检验员id" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="checkUserId">
+              <a-input v-model="model.checkUserId" placeholder="请输入检验员id" @change="handleDeliveryUserIdChange"/>
+            </a-form-model-item>
+          </a-col>
+          <a-col :span="8">
+            <a-form-model-item label="检验员名称" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="checkUserName">
+              <a-input v-model="model.checkUserName" placeholder="请输入检验员名称"  ></a-input>
+            </a-form-model-item>
+          </a-col>
+          <a-col :span="6">
+            <a-form-model-item label="检验设备" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="checkDevice">
+              <j-dict-select-tag type="list" v-model="model.checkDevice" dictCode="checkDevice" placeholder="请选择检验设备" />
+            </a-form-model-item>
+          </a-col>
+        </a-row>
+        <a-row>
+          <a-col :span="8">
+            <a-form-model-item label="检测时间" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="checkTime">
+              <j-date placeholder="请选择检测时间"  v-model="model.checkTime" :show-time="true" date-format="YYYY-MM-DD HH:mm:ss" style="width: 100%" />
+            </a-form-model-item>
+          </a-col>
+          <a-col :span="8">
+            <a-form-model-item label="预估完成所需要的时间" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="evaluateTime">
+              <a-input-number v-model="model.evaluateTime" placeholder="请输入预估完成所需要的时间" style="width: 100%" />
+            </a-form-model-item>
+          </a-col>
+        </a-row>
+      </div>
       </a-form-model>
     </j-form-container>
   </a-spin>
@@ -98,7 +133,7 @@
          },
         labelCol: {
           xs: { span: 24 },
-          sm: { span: 5 },
+          sm: { span: 6 },
         },
         wrapperCol: {
           xs: { span: 24 },
@@ -124,9 +159,9 @@
            productDraw: [
               { required: true, message: '请输入图号!'},
            ],
-           customerName: [
+/*           customerName: [
               { required: true, message: '请输入客户名称!'},
-           ],
+           ],*/
            hardness: [
               { required: true, message: '请输入要求硬度!'},
            ],
