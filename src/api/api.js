@@ -74,6 +74,10 @@ function getDictItemsFromCache(dictCode) {
   }
 }
 
+const getBigScreenTable = (params) => getAction('/check/qzqmCheckInfo/tableScroll', params)
+const getBigScreenSummary = (params) => getAction('/check/qzqmCheckInfo/summary', params)
+const getBigScreenPassRate = (params) => getAction('/check/qzqmCheckInfo/passRate', params)
+
 //系统通告
 const doReleaseData = (params)=>getAction("/sys/annountCement/doReleaseData",params);
 const doReovkeData = (params)=>getAction("/sys/annountCement/doReovkeData",params);
@@ -157,7 +161,10 @@ export {
   saveDeptRolePermission,
   queryMyDepartTreeList,
   getUserNoticeInfo,
-  getDictItemsFromCache
+  getDictItemsFromCache,
+  getBigScreenTable,
+  getBigScreenSummary,
+  getBigScreenPassRate,
 }
 
 
