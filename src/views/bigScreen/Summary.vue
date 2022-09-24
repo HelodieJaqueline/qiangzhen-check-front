@@ -29,12 +29,19 @@
       </a-col>
       <a-col :span="14">
         <div class="summary-title" style="text-align: center;">送检合格率排行榜</div>
-        <vue-seamless-scroll :data="list" :classOption="classOption" class="check-rank-wrap" ref="seamlessScroll">
+        <vue-seamless-scroll :autoPlay="autoPlay" :data="list" :classOption="classOption" class="check-rank-wrap" ref="seamlessScroll">
           <div class="check-rank" v-for="(item, index) of list">
-            <span style="display: inline-block; width: 20px;">{{ index }}</span>
-            <span style="display: inline-block; width: 158px;">{{ item.materialName }}</span>
-            <span style="display: inline-block; width: 174px;">{{ item.productDraw }}</span>
-            <span style="display: inline-block; width: 50px;">{{ item.rate }}</span>
+            <span style="min-width: 20px; text-align: center;">
+              <template v-if="index < 3">
+                <img :src="require(`@/assets/bigScreen/${index + 1}.png`)" alt="">
+              </template>
+              <template v-else>
+                {{ index + 1 }}
+              </template>
+            </span>
+            <span style="min-width: 158px;">{{ item.materialName }}</span>
+            <span style="min-width: 174px;">{{ item.productDraw }}</span>
+            <span style="min-width: 50px;">{{ item.rate }}</span>
           </div>
         </vue-seamless-scroll>
       </a-col>
@@ -54,8 +61,9 @@ export default {
   data() {
     return {
       classOption: {
-        singleHeight: 61
+        singleHeight: 60
       },
+      autoPlay: false,
       summaryType: '1',
       summaryList: [
         {
@@ -130,6 +138,7 @@ export default {
     async getList()  {
       try {
         this.list = await getBigScreenPassRate();
+        this.autoPlay = this.list.length > 5;
         this.$refs.seamlessScroll.reset()
       } catch (err) {
 
@@ -173,17 +182,22 @@ export default {
 
   .check-rank-wrap {
     margin-top: 40px;
-    height: 270px;
+    height: 300px;
     overflow: hidden;
   }
 
   .check-rank {
-    margin-top: 40px;
+    display: flex;
     line-height: 21px;
     font-size: 18px;
 
     span {
+      flex: 1;
+      line-height: 60px;
       padding: 0 15px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
   }
 
