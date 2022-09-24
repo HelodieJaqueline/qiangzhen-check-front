@@ -292,7 +292,7 @@
           deleteBatch: "/check/qzqmCheckInfo/deleteBatch",
           exportXlsUrl: "/check/qzqmCheckInfo/exportXls",
           importExcelUrl: "check/qzqmCheckInfo/importExcel",
-          
+
         },
         dictOptions:{},
         superFieldList:[],

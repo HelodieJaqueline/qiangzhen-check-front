@@ -77,6 +77,7 @@ function getDictItemsFromCache(dictCode) {
 const getBigScreenTable = (params) => getAction('/check/qzqmCheckInfo/tableScroll', params)
 const getBigScreenSummary = (params) => getAction('/check/qzqmCheckInfo/summary', params)
 const getBigScreenPassRate = (params) => getAction('/check/qzqmCheckInfo/passRate', params)
+const getBigScreenFailureRate = (params) => getAction('/check/qzqmCheckInfo/failureRate', params)
 
 //系统通告
 const doReleaseData = (params)=>getAction("/sys/annountCement/doReleaseData",params);
@@ -165,6 +166,7 @@ export {
   getBigScreenTable,
   getBigScreenSummary,
   getBigScreenPassRate,
+  getBigScreenFailureRate,
 }
 
 

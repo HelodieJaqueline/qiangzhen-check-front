@@ -4,14 +4,14 @@
       <a-col :span="10">
         <div class="summary-title" style="margin-bottom: 30px;">数据总览</div>
 
-        <a-row gutter="20">
+        <a-row :gutter="20">
           <a-col
             v-for="item of summaryList"
             span="12"
           >
             <div class="summary-item">
               <div class="summary-item-label">{{ item.label }}</div>
-              <div class="summary-item-value">{{ summary[item.key] }}</div>
+              <div class="summary-item-value">{{ item.render ? item.render(summary[item.key]) : summary[item.key] }}</div>
             </div>
           </a-col>
         </a-row>
@@ -29,7 +29,7 @@
       </a-col>
       <a-col :span="14">
         <div class="summary-title" style="text-align: center;">送检合格率排行榜</div>
-        <vue-seamless-scroll :autoPlay="autoPlay" :data="list" :classOption="classOption" class="check-rank-wrap" ref="seamlessScroll">
+        <vue-seamless-scroll :data="list" :classOption="classOption" class="check-rank-wrap" ref="seamlessScroll">
           <div class="check-rank" v-for="(item, index) of list">
             <span style="min-width: 20px; text-align: center;">
               <template v-if="index < 3">
@@ -61,9 +61,10 @@ export default {
   data() {
     return {
       classOption: {
-        singleHeight: 60
+        singleHeight: 60,
+        autoPlay: false,
       },
-      autoPlay: false,
+
       summaryType: '1',
       summaryList: [
         {
@@ -74,17 +75,20 @@ export default {
           key: 'uncheck'
         }, {
           label: '总合格率',
-          key: 'totalPassRate'
+          key: 'totalPassRate',
+          render(val) {
+            return val + '%'
+          }
         }, {
           label: '在检测数量',
-          key: 'checking'
+          key: 'checking',
         }
       ],
       summary: {
-        total: '23.1万',
-        uncheck: '23.1万',
-        totalPassRate: '98',
-        checking: '26'
+        total: '0',
+        uncheck: '0',
+        totalPassRate: '0',
+        checking: '0'
       },
       list: [
         {
@@ -138,8 +142,8 @@ export default {
     async getList()  {
       try {
         this.list = await getBigScreenPassRate();
-        this.autoPlay = this.list.length > 5;
-        this.$refs.seamlessScroll.reset()
+        this.classOption.autoPlay = this.list.length > 5;
+        this.$refs.seamlessScroll.reset();
       } catch (err) {
 
       }

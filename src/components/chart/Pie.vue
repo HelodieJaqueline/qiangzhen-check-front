@@ -56,6 +56,12 @@
           stroke: '#fff',
           lineWidth: 1
         })
+      },
+      formatter: {
+        type: Function,
+        default(val, item) {
+          return item.point.item + ': ' + val
+        }
       }
     },
     data() {
@@ -70,9 +76,7 @@
         //   lineWidth: 1
         // },
         labelConfig: ['percent', {
-          formatter: (val, item) => {
-            return item.point.item + ': ' + val
-          }
+          formatter: (val, item) => this.formatter(val, item),
         }]
       }
     },
