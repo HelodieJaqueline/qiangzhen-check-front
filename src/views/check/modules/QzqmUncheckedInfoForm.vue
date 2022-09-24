@@ -7,27 +7,27 @@
         <a-row>
           <a-col :span="8">
             <a-form-model-item label="流程卡号" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="workCode">
-              <a-input v-model="model.workCode" placeholder="请输入流程卡号"  @change="handleWorkCodeChange" disabled="disabled"></a-input>
+              <a-input v-model="model.workCode" placeholder="请输入流程卡号"  @change="handleWorkCodeChange" :disabled="model.id"></a-input>
             </a-form-model-item>
           </a-col>
           <a-col :span="8">
             <a-form-model-item label="物料号" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="materialCode">
-              <a-input v-model="model.materialCode" placeholder="请输入物料号"  ></a-input>
+              <a-input v-model="model.materialCode" placeholder="请输入物料号" :disabled="model.id"></a-input>
             </a-form-model-item>
           </a-col>
           <a-col :span="8">
             <a-form-model-item label="物料名称" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="materialName">
-              <a-input v-model="model.materialName" placeholder="请输入物料名称"  ></a-input>
+              <a-input v-model="model.materialName" placeholder="请输入物料名称" :disabled="model.id"></a-input>
             </a-form-model-item>
           </a-col>
           <a-col :span="8">
             <a-form-model-item label="物料规格" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="specifications">
-              <a-input v-model="model.specifications" placeholder="请输入物料规格"  ></a-input>
+              <a-input v-model="model.specifications" placeholder="请输入物料规格"  :disabled="model.id"></a-input>
             </a-form-model-item>
           </a-col>
           <a-col :span="8">
             <a-form-model-item label="图号" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="productDraw">
-              <a-input v-model="model.productDraw" placeholder="请输入图号"  ></a-input>
+              <a-input v-model="model.productDraw" placeholder="请输入图号"  :disabled="model.id"></a-input>
             </a-form-model-item>
           </a-col>
 <!--          <a-col :span="8">
@@ -37,37 +37,37 @@
           </a-col>-->
           <a-col :span="8">
             <a-form-model-item label="要求硬度" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="hardness">
-              <a-input v-model="model.hardness" placeholder="请输入要求硬度"  ></a-input>
+              <a-input v-model="model.hardness" placeholder="请输入要求硬度"  :disabled="model.id"></a-input>
             </a-form-model-item>
           </a-col>
           <a-col :span="8">
             <a-form-model-item label="当前工序" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="process">
-              <a-input v-model="model.process" placeholder="请输入当前工序"  ></a-input>
+              <a-input v-model="model.process" placeholder="请输入当前工序"  :disabled="model.id"></a-input>
             </a-form-model-item>
           </a-col>
           <a-col :span="8">
             <a-form-model-item label="材质" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="material">
-              <a-input v-model="model.material" placeholder="请输入材质"  ></a-input>
+              <a-input v-model="model.material" placeholder="请输入材质"  :disabled="model.id"></a-input>
             </a-form-model-item>
           </a-col>
           <a-col :span="8">
             <a-form-model-item label="送检时间" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="deliveryTime">
-              <j-date placeholder="请选择送检时间"  v-model="model.deliveryTime" :show-time="true" date-format="YYYY-MM-DD HH:mm:ss" style="width: 100%" />
+              <j-date placeholder="请选择送检时间"  v-model="model.deliveryTime" :show-time="true" date-format="YYYY-MM-DD HH:mm:ss" style="width: 100%" :disabled="model.id"/>
             </a-form-model-item>
           </a-col>
           <a-col :span="8">
             <a-form-model-item label="送检人" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="deliveryUserId">
-              <a-input v-model="model.deliveryUserId" placeholder="请输入送检人" @change="handleDeliveryUserIdChange" ></a-input>
+              <a-input v-model="model.deliveryUserId" placeholder="请输入送检人" @change="handleDeliveryUserIdChange" :disabled="model.id"></a-input>
             </a-form-model-item>
           </a-col>
           <a-col :span="8">
             <a-form-model-item label="送检人姓名" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="deliveryUserName">
-              <a-input v-model="model.deliveryUserName" placeholder="请输入送检人姓名"  ></a-input>
+              <a-input v-model="model.deliveryUserName" placeholder="请输入送检人姓名"  :disabled="model.id"></a-input>
             </a-form-model-item>
           </a-col>
           <a-col :span="8">
             <a-form-model-item label="送检部门" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="deliveryDep">
-              <a-input v-model="model.deliveryDep" placeholder="请输入送检部门"  ></a-input>
+              <a-input v-model="model.deliveryDep" placeholder="请输入送检部门"  :disabled="model.id"></a-input>
             </a-form-model-item>
           </a-col>
         </a-row>
@@ -77,17 +77,17 @@
         <a-row>
           <a-col :span="8">
             <a-form-model-item label="检验员id" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="checkUserId">
-              <a-input v-model="model.checkUserId" placeholder="请输入检验员id" @change="handleDeliveryUserIdChange"/>
+              <a-input v-model="model.checkUserId" placeholder="请输入检验员id" @change="handleDeliveryUserIdChange" />
             </a-form-model-item>
           </a-col>
           <a-col :span="8">
             <a-form-model-item label="检验员名称" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="checkUserName">
-              <a-input v-model="model.checkUserName" placeholder="请输入检验员名称"  ></a-input>
+              <a-input v-model="model.checkUserName" placeholder="请输入检验员名称" ></a-input>
             </a-form-model-item>
           </a-col>
           <a-col :span="6">
             <a-form-model-item label="检验设备" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="checkDevice">
-              <j-dict-select-tag type="list" v-model="model.checkDevice" dictCode="checkDevice" placeholder="请选择检验设备" />
+              <j-dict-select-tag type="list" v-model="model.checkDevice" dictCode="checkDevice" placeholder="请选择检验设备"/>
             </a-form-model-item>
           </a-col>
         </a-row>
