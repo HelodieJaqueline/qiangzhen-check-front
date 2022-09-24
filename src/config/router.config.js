@@ -323,6 +323,12 @@ export const constantRouterMap = [
     ]
   },
 
+  {
+    path: '/bigscreen',
+    name: 'bigscreen',
+    component: () => import(/* webpackChunkName: "user" */ '@/views/bigScreen/index')
+  },
+
   // {
   //   path: '/',
   //   name: 'index',

@@ -2,9 +2,9 @@
   <v-chart :forceFit="true" :height="height" :data="data" :scale="scale" :onClick="handleClick">
     <v-tooltip :showTitle="false" dataKey="item*percent"/>
     <v-axis/>
-    <v-legend dataKey="item"/>
-    <v-pie position="percent" color="item" :v-style="pieStyle" :label="labelConfig"/>
-    <v-coord type="theta"/>
+    <v-legend v-if="showLegend" dataKey="item"/>
+    <v-pie position="percent" :color="color" :v-style="pieStyle" :label="labelConfig"/>
+    <v-coord type="theta"  :radius="radius" :innerRadius="innerRadius" />
   </v-chart>
 </template>
 
@@ -20,9 +20,25 @@
         type: String,
         default: ''
       },
+      showLegend: {
+        type: Boolean,
+        default: true,
+      },
       height: {
         type: Number,
         default: 254
+      },
+      color: {
+        type: [Array, String],
+        default: () => 'item'
+      },
+      radius: {
+        type: Number,
+        default: 1
+      },
+      innerRadius: {
+        type: Number,
+        default: 0
       },
       dataSource: {
         type: Array,
@@ -33,6 +49,13 @@
           { item: '示例四', count: 13 },
           { item: '示例五', count: 9 }
         ]
+      },
+      pieStyle: {
+        type: Object,
+        default: () => ({
+          stroke: '#fff',
+          lineWidth: 1
+        })
       }
     },
     data() {
@@ -42,10 +65,10 @@
           min: 0,
           formatter: '.0%'
         }],
-        pieStyle: {
-          stroke: '#fff',
-          lineWidth: 1
-        },
+        // pieStyle: {
+        //   stroke: '#fff',
+        //   lineWidth: 1
+        // },
         labelConfig: ['percent', {
           formatter: (val, item) => {
             return item.point.item + ': ' + val
