@@ -115,7 +115,7 @@
           </a-col>
           <a-col :span="8">
             <a-form-model-item label="结束日期" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="finishedTime">
-              <j-date placeholder="请选择结束日期" v-model="model.finishedTime"  style="width: 100%" />
+              <j-date placeholder="请选择结束日期" v-model="model.finishedTime"  :show-time="true" date-format="YYYY-MM-DD HH:mm:ss"   style="width: 100%" />
             </a-form-model-item>
           </a-col>
         </a-row>
@@ -201,6 +201,24 @@
            checkUserName: [
               { required: true, message: '请输入检验员名称!'},
            ],
+          checkDevice: [
+            { required: true, message: '请输入检验设备!'},
+          ],
+          checkTime: [
+            { required: true, message: '请输入检测时间!'},
+          ],
+          evaluateTime: [
+            { required: true, message: '请输入预估时间!'},
+          ],
+          qualifiedStatus: [
+            { required: true, message: '请输入合格状态(0:未知，1:合格，2:不合格)!'},
+          ],
+          reportUrl:[
+            { required: true, message: '请上传结果'},
+          ],
+          finishedTime:[
+            { required: true, message: '请输入结束时间'}
+          ],
         },
         url: {
           add: "/check/qzqmCheckInfo/add",

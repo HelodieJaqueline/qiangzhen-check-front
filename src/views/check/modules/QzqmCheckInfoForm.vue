@@ -205,9 +205,15 @@
            checkUserName: [
               { required: true, message: '请输入检验员名称!'},
            ],
-           checkStatus: [
-              { required: true, message: '请输入检测状态(0:待检测，1:检测中，2:检测完成)!'},
-           ],
+            checkDevice: [
+              { required: true, message: '请输入检验设备!'},
+            ],
+            checkTime: [
+              { required: true, message: '请输入检测时间!'},
+            ],
+            evaluateTime: [
+              { required: true, message: '请输入预估时间!'},
+            ],
            qualifiedStatus: [
               { required: true, message: '请输入合格状态(0:未知，1:合格，2:不合格)!'},
            ],

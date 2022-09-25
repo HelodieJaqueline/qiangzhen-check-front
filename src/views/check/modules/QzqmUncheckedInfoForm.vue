@@ -77,7 +77,7 @@
         <a-row>
           <a-col :span="8">
             <a-form-model-item label="检验员id" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="checkUserId">
-              <a-input v-model="model.checkUserId" placeholder="请输入检验员id" @change="handleDeliveryUserIdChange" />
+              <a-input v-model="model.checkUserId" placeholder="请输入检验员id" @change="handleCheckUserIdChange" />
             </a-form-model-item>
           </a-col>
           <a-col :span="8">
@@ -98,8 +98,8 @@
             </a-form-model-item>
           </a-col>
           <a-col :span="8">
-            <a-form-model-item label="预估完成所需要的时间" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="evaluateTime">
-              <a-input-number v-model="model.evaluateTime" placeholder="请输入预估完成所需要的时间" style="width: 100%" />
+            <a-form-model-item label="预估时间" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="evaluateTime">
+              <a-input-number v-model="model.evaluateTime" placeholder="请输入预估时间" style="width: 100%" />
             </a-form-model-item>
           </a-col>
         </a-row>
@@ -183,6 +183,21 @@
            deliveryDep: [
               { required: true, message: '请输入送检部门!'},
            ],
+          checkUserId: [
+            { required: true, message: '请输入检验员id!'},
+          ],
+          checkUserName: [
+            { required: true, message: '请输入检验员名称!'},
+          ],
+          checkDevice: [
+            { required: true, message: '请输入检验设备!'},
+          ],
+          checkTime: [
+            { required: true, message: '请输入检测时间!'},
+          ],
+          evaluateTime: [
+            { required: true, message: '请输入预估时间!'},
+          ],
         },
         url: {
           add: "/check/qzqmCheckInfo/add",
@@ -258,6 +273,13 @@
         const response = await getAction(this.url.queryMesUser, {userId});
         this.model.deliveryUserName = response.result.userName;
         this.model.deliveryDep = response.result.dptName;
+        this.$forceUpdate();
+      },800),
+
+      handleCheckUserIdChange: debounce(async function (event){
+        const userId = event.target.value;
+        const response = await getAction(this.url.queryMesUser, {userId});
+        this.model.checkUserName = response.result.userName;
         this.$forceUpdate();
       },800),
     }
