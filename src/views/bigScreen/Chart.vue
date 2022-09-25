@@ -1,72 +1,129 @@
 <template>
   <div class="ChartWrapper">
     <div class="ChartWrapper-top">
-      <div class=ChartWrapper-top-title>零件故障率</div>
+      <div class="ChartWrapper-top-title">零件故障率</div>
 
-      <a-radio-group size="large" default-value="a" button-style="solid">
-        <a-radio-button value="a">
+      <a-radio-group size="large" default-value="1" @change="onDateChangne" button-style="solid">
+        <a-radio-button value="1">
           本日
         </a-radio-button>
-        <a-radio-button value="b">
+        <a-radio-button value="2">
           本月
         </a-radio-button>
-        <a-radio-button value="c">
+        <a-radio-button value="3">
           本年
         </a-radio-button>
       </a-radio-group>
     </div>
 
 
-
     <div class="ChartBox">
       <div class="chart">
-        <Pie radius="1" :height="320" :showLegend="false" :pie-style="pieStyle" :color="color" :data-source="dataSource" inner-radius="0.6"></Pie>
+        <template v-if="!data.pass && !data.failure">
+          <div class="empty-chart">
+            <a-empty :image="simpleImage" />
+          </div>
+        </template>
+        <Pie
+          v-else
+          radius="1"
+          :height="320"
+          :showLegend="false"
+          :pie-style="pieStyle"
+          :color="color"
+          :data-source="dataSource"
+          :formatter="formatter"
+          inner-radius="0.6"></Pie>
       </div>
 
       <div class="count-data">
         <div>
           <div class="count-data-label">合格率</div>
-          <div class="count-data-value">10%</div>
+          <div class="count-data-value">{{ data.passRate }}%</div>
         </div>
         <div>
           <div class="count-data-label">检测数量</div>
-          <div class="count-data-value">10%</div>
+          <div class="count-data-value">{{ data.checked }}</div>
         </div>
         <div>
           <div class="count-data-label">故障次数</div>
-          <div class="count-data-value">10%</div>
+          <div class="count-data-value">{{ data.failure }}</div>
         </div>
       </div>
     </div>
     <div class="ChartWrapper-search">
       <span class="ChartWrapper-search-label">搜索：</span>
-      <a-input class="ChartWrapper-search-input" size="large" placeholder="请输入零件图号查询"></a-input>
-      <a-button size="large"  type="primary">搜索</a-button>
-      <a-button size="large">重置</a-button>
+      <a-input class="ChartWrapper-search-input" v-model="params.productDraw" size="large" placeholder="请输入零件图号查询"></a-input>
+      <a-button @click="search" size="large" type="primary">搜索</a-button>
+      <a-button @click="reset" size="large">重置</a-button>
     </div>
 
   </div>
 </template>
 
 <script>
+import { Empty } from 'ant-design-vue';
+import { getBigScreenFailureRate } from '@/api/api'
 import Pie from '@comp/chart/Pie'
-const color = ['item', ['#05B3FF', '#FE7036FF', '#fbce1e', '#2b3b79', '#8a4be2', '#1dc5c5']];
+
+const color = ['item', ['#05B3FF', '#FE7036FF', '#fbce1e', '#2b3b79', '#8a4be2', '#1dc5c5']]
 
 export default {
   name: 'Chart',
-  components: {Pie},
+  components: { Pie },
   data() {
     return {
       height: 300,
       color,
-      dataSource: [
-        { item: '故障', count: 40 },
-        { item: '示例二', count: 21 },
-      ],
+      simpleImage: '',
+      data: { checked: 0, pass: 0, failure: 0, passRate: 0 },
       pieStyle: {
         stroke: '#1273DB',
         lineWidth: 0
-      }
+      },
+      params: {
+        type: '1',
+        productDraw: '',
+      },
+      formatter(val, item) {
+        if (item.point.item !== '故障') return '';
+        return item.point.item;
+      },
+    }
+  },
+  computed: {
+
+    dataSource() {
+      return [
+        { item: '故障', count: this.data.failure || 0 },
+        { item: '合格', count: this.data.pass }
+      ]
+    }
+  },
+  beforeCreate() {
+    this.simpleImage = Empty.PRESENTED_IMAGE_SIMPLE;
+  },
+  mounted() {
+    this.getData()
+  },
+  methods: {
+    async getData() {
+      const data = await getBigScreenFailureRate({
+        ...this.params
+      })
+      console.log(data)
+      this.data = data || {checked: 0, pass: 0, failure: 0, passRate: 0};
+    },
+    onDateChangne(event) {
+      this.params.type = event.target.value
+      this.getData()
+    },
+    search() {
+      this.getData();
+    },
+    reset() {
+      this.params.productDraw = '';
+      this.getData();
     }
   }
 }
@@ -79,7 +136,7 @@ export default {
   border-radius: 12px;
   background: rgba(5, 13, 75, 1);
   border: 2px solid rgba(8, 72, 138, 1);
-  box-shadow:inset 0px 1px 20px 0px rgba(18, 142, 232, 0.34);
+  box-shadow: inset 0px 1px 20px 0px rgba(18, 142, 232, 0.34);
 
   &-top {
     padding-left: 38px;
@@ -94,6 +151,7 @@ export default {
 
   .ChartBox {
     display: flex;
+    height: 365px;
     //justify-content: space-between;
 
 
@@ -143,21 +201,26 @@ export default {
       border: 1px solid rgba(255, 255, 255, 0.2);
       color: #fff;
 
-      &::placeholder  {
+      &::placeholder {
         color: rgba(255, 255, 255, 0.5);
       }
     }
+  }
+
+  .empty-chart{
+    //width: 400px;
+    //height: 366px;
   }
 
 
   /deep/ .ant-radio-button-wrapper {
     background: rgba(0, 0, 0, 0.2);
     color: rgba(255, 255, 255, 0.7);
-    border-color:  rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.2);
   }
 
   /deep/ .ant-radio-button-wrapper:not(:first-child)::before {
-    background-color:  transparent;
+    background-color: transparent;
   }
 
   /deep/ .ant-radio-group-solid .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled) {

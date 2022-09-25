@@ -11,7 +11,7 @@
           <template
            v-if="column.key === 'action'"
           >
-            <span @click="handleDetail(item)" class="detailBtn">详情</span>
+            <span :data-item="JSON.stringify(item)" class="screen-detailBtn">详情</span>
           </template>
           <template
            v-else-if="column.dataIndex === 'checkStatus'"
@@ -38,13 +38,18 @@
         </div>
       </div>
     </vue-seamless-scroll>
-    <qzqm-unchecked-info-modal ref="modalForm"></qzqm-unchecked-info-modal>
+    <qzqm-unchecked-info-modal ref="unCheckedModalForm"></qzqm-unchecked-info-modal>
+    <qzqm-checking-info-modal ref="checkingModalForm"></qzqm-checking-info-modal>
+    <qzqm-check-info-modal ref="checkModalForm"></qzqm-check-info-modal>
   </div>
 </template>
 <script>
 import vueSeamlessScroll from 'vue-seamless-scroll';
 import { getBigScreenTable } from '@/api/api';
 import QzqmUncheckedInfoModal from '@views/check/modules/QzqmUncheckedInfoModal'
+import QzqmCheckingInfoModal from '@views/check/modules/QzqmCheckingInfoModal'
+import QzqmCheckInfoModal from '@views/check/modules/QzqmCheckInfoModal'
+
 const columns = [
   {
     dataIndex: 'id',
@@ -123,7 +128,9 @@ const columns = [
 export default {
   components: {
     vueSeamlessScroll,
-    QzqmUncheckedInfoModal
+    QzqmUncheckedInfoModal,
+    QzqmCheckingInfoModal,
+    QzqmCheckInfoModal
   },
   data() {
     return {
@@ -137,15 +144,30 @@ export default {
   },
   mounted() {
     this.getData();
+    document.addEventListener('click', this.handleClick)
   },
   beforeDestroy() {
+    document.removeEventListener('click', this.handleClick);
     clearTimeout(this.timer)
   },
   methods: {
+    handleClick(event) {
+      const item = event.target;
+      try {
+        const data = JSON.parse(item.getAttribute('data-item'));
+        this.handleDetail(data);
+      } catch (err) {
+
+      }
+    },
     handleDetail:function(record){
-      this.$refs.modalForm.edit(record);
-      this.$refs.modalForm.title="详情";
-      this.$refs.modalForm.disableSubmit = true;
+      console.log(record)
+      const refs = ['unCheckedModalForm', 'checkingModalForm', 'checkModalForm'];
+      const ref = this.$refs[refs[record.checkStatus]];
+      if (!ref) return;
+      ref.edit(record);
+      ref.title="详情";
+      ref.disableSubmit = true;
     },
     statusRender(status) {
       return ['待检测', '检测中',  '检测完成'][status] || '/'
@@ -160,7 +182,7 @@ export default {
       try {
         const { result } = await getBigScreenTable({
           pageNum: this.pageNum,
-          pageSize: 10,
+          pageSize: 20,
         });
         const { current, records } = result;
         this.dataSource = records;
@@ -196,7 +218,7 @@ export default {
   height: 324px;
   overflow: hidden;
 
-  .detailBtn {
+  .screen-detailBtn {
     display: inline-block;
     width: 52px;
     height: 24px;
