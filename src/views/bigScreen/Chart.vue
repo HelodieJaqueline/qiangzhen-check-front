@@ -32,7 +32,7 @@
           :pie-style="pieStyle"
           :color="color"
           :data-source="dataSource"
-          :formatter="formatter"
+          :labelConfig="labelConfig"
           inner-radius="0.6"></Pie>
       </div>
 
@@ -65,8 +65,8 @@
 import { Empty } from 'ant-design-vue';
 import { getBigScreenFailureRate } from '@/api/api'
 import Pie from '@comp/chart/Pie'
-
-const color = ['item', ['#05B3FF', '#FE7036FF', '#fbce1e', '#2b3b79', '#8a4be2', '#1dc5c5']]
+// 'l(270) 0:#4037ED 1:#FE7036'
+const color = ['item', ['#FE7036', 'l(270) 0:#05B3FF 1:#4037ED', '#fbce1e', '#2b3b79', '#8a4be2', '#1dc5c5']]
 
 export default {
   name: 'Chart',
@@ -85,10 +85,20 @@ export default {
         type: '1',
         productDraw: '',
       },
-      formatter(val, item) {
-        if (item.point.item !== '故障') return '';
-        return item.point.item;
-      },
+      labelConfig: [
+        'percent',
+        (x,a) => ({
+          formatter(val, item) {
+            if (item.point.item !== '故障') return '';
+            return item.point.item;
+          },
+          textStyle: {
+            fill: a.color,
+            fontSize: 20,
+          }
+        })
+      ],
+
     }
   },
   computed: {
