@@ -110,7 +110,7 @@
           </a-col>
           <a-col :span="8">
             <a-form-model-item label="报告上传" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="reportUrl">
-              <j-image-upload class="avatar-uploader" text="上传" v-model="model.reportUrl" ></j-image-upload>
+              <j-image-upload class="avatar-uploader" text="上传" v-model="model.reportUrl" is-multiple></j-image-upload>
             </a-form-model-item>
           </a-col>
           <a-col :span="8">

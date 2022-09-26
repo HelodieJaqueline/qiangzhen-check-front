@@ -16,7 +16,7 @@
           <template
            v-else-if="column.dataIndex === 'checkStatus'"
           >
-            <span style="color: #FE7C4B;">{{statusRender(item.checkStatus)}}</span>
+            <span :style="{color: checkStatusColor(item.checkStatus)}">{{statusRender(item.checkStatus)}}</span>
           </template>
           <template
             v-else-if="column.dataIndex === 'qualifiedStatus'"
@@ -177,6 +177,9 @@ export default {
     },
     qualifiedStatusColor(status) {
       return ['#fff', '#1AC4A2',  '#F04175'][status] || '#fff'
+    },
+    checkStatusColor(status) {
+      return ['#F04175', '#FE7C4B',  '#1AC4A2'][status] || '#F04175'
     },
     async getData() {
       try {
