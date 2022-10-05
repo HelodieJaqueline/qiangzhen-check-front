@@ -91,27 +91,7 @@ export default {
         checking: '0'
       },
       list: [
-        {
-          name: '六角法兰垫片A型号',
-          value: 'A2-BK123189W232',
-          percent: '92%'
-        }, {
-          name: '六角法兰垫片A型号',
-          value: 'A2-BK123189W232',
-          percent: '92%'
-        }, {
-          name: '六角法兰垫片A型号',
-          value: 'A2-BK123189W232',
-          percent: '92%'
-        }, {
-          name: '六角法兰垫片A型号',
-          value: 'A2-BK123189W232',
-          percent: '92%'
-        }, {
-          name: '六角法兰垫片A型号',
-          value: 'A2-BK123189W232',
-          percent: '92%'
-        }
+
       ]
     }
   },
@@ -121,6 +101,7 @@ export default {
   },
   beforeDestroy() {
     clearTimeout(this.getListTimer)
+    clearTimeout(this.getSummaryTimer)
   },
   methods: {
     onSummaryTypeChange(event) {
@@ -136,7 +117,7 @@ export default {
       } catch (err) {
         console.error(err)
       }
-      // this.getSummaryTimer = setTimeout(this.getSummary, 50000)
+      this.getSummaryTimer = setTimeout(this.getSummary, 5000)
     },
 
     async getList()  {
@@ -147,7 +128,7 @@ export default {
       } catch (err) {
 
       }
-      this.getListTimer = setTimeout(this.getList, 50000)
+      this.getListTimer = setTimeout(this.getList, 5000)
     }
   }
 }
