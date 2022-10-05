@@ -42,8 +42,12 @@ export default {
     }, 500);
     window.addEventListener('resize', this.updateStyle)
   },
+  beforeCreate() {
+    document.body.classList.add('screen-bg')
+  },
   beforeDestroy() {
     window.removeEventListener('resize', this.updateStyle)
+    document.body.classList.remove('screen-bg')
   },
   methods: {
     updateStyle() {
@@ -57,3 +61,9 @@ export default {
 
 
 <style lang="less" scoped src="./index.less"></style>
+<style lang="less">
+.screen-bg {
+  background-color: rgba(4, 7, 47, 1);
+  //overflow: hidden;
+}
+</style>
