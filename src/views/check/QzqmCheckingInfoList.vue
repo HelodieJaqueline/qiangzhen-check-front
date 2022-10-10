@@ -198,6 +198,11 @@
             dataIndex: 'process'
           },
           {
+            title:'工序详情',
+            align:"center",
+            dataIndex: 'processDetail'
+          },
+          {
             title:'材质',
             align:"center",
             dataIndex: 'material'

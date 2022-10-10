@@ -208,6 +208,11 @@
             dataIndex: 'process'
           },
           {
+            title:'工序详情',
+            align:"center",
+            dataIndex: 'processDetail'
+          },
+          {
             title:'材质',
             align:"center",
             dataIndex: 'material'
@@ -257,11 +262,11 @@
             align:"center",
             dataIndex: 'evaluateTime'
           },
-          {
+/*          {
             title:'上传报告地址',
             align:"center",
             dataIndex: 'reportUrl'
-          },
+          },*/
           {
             title:'结束日期',
             align:"center",

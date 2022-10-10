@@ -46,6 +46,11 @@
             </a-form-model-item>
           </a-col>
           <a-col :span="8">
+            <a-form-model-item label="工序详情" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="processDetail">
+              <a-input v-model="model.processDetail" placeholder="请输入工序详情"   :disabled="model.id"></a-input>
+            </a-form-model-item>
+          </a-col>
+          <a-col :span="8">
             <a-form-model-item label="材质" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="material">
               <a-input v-model="model.material" placeholder="请输入材质"  :disabled="model.id"></a-input>
             </a-form-model-item>
