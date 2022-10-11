@@ -169,7 +169,7 @@
           {
             title:'检测编号',
             align:"center",
-            dataIndex: 'id'
+            dataIndex: 'checkNo'
           },
           {
             title:'物料号',

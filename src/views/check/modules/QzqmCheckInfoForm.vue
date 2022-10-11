@@ -90,18 +90,18 @@
               <a-input v-model="model.checkUserName" placeholder="请输入检验员名称"  ></a-input>
             </a-form-model-item>
           </a-col>
-          <a-col :span="8">
+<!--          <a-col :span="8">
             <a-form-model-item label="检验设备" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="checkDevice">
               <j-dict-select-tag type="list" v-model="model.checkDevice" dictCode="checkDevice" placeholder="请选择检验设备" />
             </a-form-model-item>
-          </a-col>
-        </a-row>
-        <a-row>
+          </a-col>-->
           <a-col :span="8">
             <a-form-model-item label="检测时间" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="checkTime">
               <j-date placeholder="请选择检测时间" v-model="model.checkTime"  style="width: 100%" />
             </a-form-model-item>
           </a-col>
+        </a-row>
+        <a-row>
           <a-col :span="8">
             <a-form-model-item label="预估时间" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="evaluateTime">
               <a-input-number v-model="model.evaluateTime" placeholder="请输入预估完成所需要的时间" style="width: 100%" />

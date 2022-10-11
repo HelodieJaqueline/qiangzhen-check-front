@@ -170,7 +170,7 @@
           {
             title:'检测编号',
             align:"center",
-            dataIndex: 'id'
+            dataIndex: 'checkNo'
           },
           {
             title:'物料号',
@@ -247,11 +247,11 @@
             align:"center",
             dataIndex: 'checkUserName'
           },
-          {
+/*          {
             title:'检验设备',
             align:"center",
             dataIndex: 'checkDevice_dictText'
-          },
+          },*/
           {
             title:'检测时间',
             align:"center",
