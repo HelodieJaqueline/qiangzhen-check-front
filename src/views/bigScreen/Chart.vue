@@ -1,7 +1,7 @@
 <template>
   <div class="ChartWrapper">
     <div class="ChartWrapper-top">
-      <div class="ChartWrapper-top-title">零件故障率</div>
+      <div class="ChartWrapper-top-title">零件合格率</div>
 
       <a-radio-group size="large" default-value="1" @change="onDateChangne" button-style="solid">
         <a-radio-button value="1">
@@ -26,7 +26,7 @@
         </template>
         <Pie
           v-else
-          radius="1"
+          :radius="0.9"
           :height="320"
           :showLegend="false"
           :pie-style="pieStyle"
@@ -89,7 +89,8 @@ export default {
         'percent',
         (x,a) => ({
           formatter(val, item) {
-            if (item.point.item !== '故障') return '';
+            if (item.point.item !== '不合格') return '';
+            if (item.point.count === 0) return '';
             return item.point.item;
           },
           textStyle: {
@@ -105,7 +106,7 @@ export default {
 
     dataSource() {
       return [
-        { item: '故障', count: this.data.failure || 0 },
+        { item: '不合格', count: this.data.failure || 0 },
         { item: '合格', count: this.data.pass }
       ]
     }
@@ -123,6 +124,7 @@ export default {
       })
       console.log(data)
       this.data = data || {checked: 0, pass: 0, failure: 0, passRate: 0};
+      // this.data = {checked: 10, pass: 10, failure: 0, passRate: 100};
     },
     onDateChangne(event) {
       this.params.type = event.target.value
