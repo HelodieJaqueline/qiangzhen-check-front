@@ -45,7 +45,7 @@
           </a-col>
           <a-col :span="8">
             <a-form-model-item label="工序详情" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="processDetail">
-              <a-input v-model="model.processDetail" placeholder="请输入工序详情"   :disabled="model.id"></a-input>
+              <a-input v-model="model.processDetail" placeholder="请输入工序详情" ></a-input>
             </a-form-model-item>
           </a-col>
           <a-col :span="8">
@@ -57,7 +57,7 @@
         <a-row>
           <a-col :span="8">
             <a-form-model-item label="送检时间" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="deliveryTime">
-              <j-date placeholder="请选择送检时间" v-model="model.deliveryTime"  style="width: 100%" />
+              <j-date placeholder="请选择送检时间" v-model="model.deliveryTime"   :show-time="true" date-format="YYYY-MM-DD HH:mm:ss"   style="width: 100%" />
             </a-form-model-item>
           </a-col>
           <a-col :span="8">
@@ -97,7 +97,7 @@
           </a-col>-->
           <a-col :span="8">
             <a-form-model-item label="检测时间" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="checkTime">
-              <j-date placeholder="请选择检测时间" v-model="model.checkTime"  style="width: 100%" />
+              <j-date placeholder="请选择检测时间" v-model="model.checkTime"  :show-time="true" date-format="YYYY-MM-DD HH:mm:ss"   style="width: 100%" />
             </a-form-model-item>
           </a-col>
         </a-row>
@@ -122,7 +122,7 @@
           </a-col>
           <a-col :span="8">
             <a-form-model-item label="结束日期" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="finishedTime">
-              <j-date placeholder="请选择结束日期" v-model="model.finishedTime"  style="width: 100%" />
+              <j-date placeholder="请选择结束日期" v-model="model.finishedTime"   :show-time="true" date-format="YYYY-MM-DD HH:mm:ss"   style="width: 100%" />
             </a-form-model-item>
           </a-col>
         </a-row>

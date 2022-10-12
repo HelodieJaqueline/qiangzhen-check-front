@@ -236,11 +236,11 @@
             align:"center",
             dataIndex: 'deliveryDep'
           },
-          {
+/*          {
             title:'检验员id',
             align:"center",
             dataIndex: 'checkUserId'
-          },
+          },*/
           {
             title: '操作',
             dataIndex: 'action',

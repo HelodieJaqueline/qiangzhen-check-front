@@ -55,11 +55,11 @@
           </a-col>
         </a-row>
         <a-row>
-          <a-col :span="8">
+<!--          <a-col :span="8">
             <a-form-model-item label="送检时间" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="deliveryTime">
               <j-date placeholder="请选择送检时间"  v-model="model.deliveryTime" :show-time="true" date-format="YYYY-MM-DD HH:mm:ss" style="width: 100%" :disabled="model.id"/>
             </a-form-model-item>
-          </a-col>
+          </a-col>-->
           <a-col :span="8">
             <a-form-model-item label="送检人" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="deliveryUserId">
               <a-input v-model="model.deliveryUserId" placeholder="请输入送检人"  :disabled="model.id"></a-input>
@@ -120,11 +120,11 @@
               <j-image-upload class="avatar-uploader" text="上传" v-model="model.reportUrl" is-multiple></j-image-upload>
             </a-form-model-item>
           </a-col>
-          <a-col :span="8">
+<!--          <a-col :span="8">
             <a-form-model-item label="结束日期" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="finishedTime">
               <j-date placeholder="请选择结束日期" v-model="model.finishedTime"  :show-time="true" date-format="YYYY-MM-DD HH:mm:ss"   style="width: 100%" />
             </a-form-model-item>
-          </a-col>
+          </a-col>-->
         </a-row>
       </a-form-model>
     </j-form-container>
@@ -136,10 +136,12 @@
   import { httpAction, getAction } from '@/api/manage'
   import { validateDuplicateValue } from '@/utils/util'
   import debounce from "lodash/debounce";
+  import JeecgPdfView from "@views/jeecg/JeecgPdfView";
 
   export default {
     name: 'QzqmCheckingInfoForm',
     components: {
+      JeecgPdfView
     },
     props: {
       //表单禁用
