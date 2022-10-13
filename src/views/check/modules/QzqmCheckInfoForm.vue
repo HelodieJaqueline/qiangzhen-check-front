@@ -121,6 +121,13 @@
             </a-form-model-item>
           </a-col>
           <a-col :span="8">
+            <a-form-model-item label="PDF上传" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="reportUrl">
+              <j-upload multiple text="上传" v-model="model.reportPdfUrl"></j-upload>
+            </a-form-model-item>
+          </a-col>
+        </a-row>
+        <a-row>
+          <a-col :span="8">
             <a-form-model-item label="结束日期" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="finishedTime">
               <j-date placeholder="请选择结束日期" v-model="model.finishedTime"   :show-time="true" date-format="YYYY-MM-DD HH:mm:ss"   style="width: 100%" />
             </a-form-model-item>
