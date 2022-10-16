@@ -20,6 +20,7 @@
             <span style="float: left;overflow: hidden;" class="table-page-search-submitButtons">
               <a-button type="primary" @click="searchQuery" icon="search">筛选</a-button>
               <a-button type="primary" @click="searchReset" icon="reload" style="margin-left: 8px">重置</a-button>
+              <a-button type="primary" @click="pdfVisible = true" style="margin-left: 8px">pdf</a-button>
             </span>
           </a-col>
 
@@ -121,6 +122,14 @@
     </div>
 
     <qzqm-checking-info-modal ref="modalForm" @ok="modalFormOk"></qzqm-checking-info-modal>
+    <j-modal
+      title="pdf预览"
+      :width="`1000px`"
+      :visible.sync="pdfVisible"
+      switchFullscreen
+      cancelText="关闭">
+      <PdfViewer source="http://localhost:3000/cdn/test.pdf" />
+    </j-modal>
   </a-card>
 </template>
 
@@ -130,15 +139,18 @@
   import { mixinDevice } from '@/utils/mixin'
   import { JeecgListMixin } from '@/mixins/JeecgListMixin'
   import QzqmCheckingInfoModal from './modules/QzqmCheckingInfoModal'
+  import PdfViewer from '@comp/PdfViewer/PdfViewer'
 
   export default {
     name: 'QzqmCheckingInfoList',
     mixins:[JeecgListMixin, mixinDevice],
     components: {
-      QzqmCheckingInfoModal
+      QzqmCheckingInfoModal,
+      PdfViewer,
     },
     data () {
       return {
+        pdfVisible: false,
         description: 'qzqm_check_info管理页面',
         // 表头
         columns: [
