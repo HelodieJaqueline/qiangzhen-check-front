@@ -10,7 +10,7 @@
 import * as PDF from 'pdfjs-dist/legacy/build/pdf.js'
 import * as PdfjsViewer from 'pdfjs-dist/legacy/web/pdf_viewer'
 import viewerStyle from '!!css-loader!pdfjs-dist/legacy/web/pdf_viewer.css'
-PDF.GlobalWorkerOptions.workerSrc = '/node_modules/pdfjs-dist/build/pdf.worker.js'
+PDF.GlobalWorkerOptions.workerSrc = '/cdn/pdf.worker.min.js'
 
 // // Setting worker path to worker bundle.
 // PDF.GlobalWorkerOptions.workerSrc =
