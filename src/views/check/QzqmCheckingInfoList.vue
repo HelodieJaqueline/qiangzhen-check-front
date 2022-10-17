@@ -279,14 +279,19 @@
           deleteBatch: "/check/qzqmCheckInfo/deleteBatch",
           exportXlsUrl: "/check/qzqmCheckInfo/exportXls",
           importExcelUrl: "check/qzqmCheckInfo/importExcel",
-          
+
         },
         dictOptions:{},
         superFieldList:[],
       }
     },
     created() {
-    this.getSuperFieldList();
+      this.getSuperFieldList();
+      this.interval = setInterval(this.searchQuery,15000);
+    },
+
+    beforeDestroy() {
+      clearInterval(this.interval);
     },
     computed: {
       importExcelUrl: function(){

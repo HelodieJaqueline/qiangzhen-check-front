@@ -158,6 +158,7 @@
     },
     data () {
       return {
+        pdfVisible: false,
         model:{
          },
         labelCol: {
@@ -289,7 +290,7 @@
               that.confirmLoading = false;
             })
           }
-         
+
         })
       },
       handleWorkCodeChange: debounce(async function (event){

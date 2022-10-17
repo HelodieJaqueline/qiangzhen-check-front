@@ -23,6 +23,8 @@
       :returnUrl="returnUrl"
       :listType="complistType"
       @preview="handlePreview"
+      @download="handleDownload"
+      :showUploadList="{ showRemoveIcon: true, showDownloadIcon: true }"
       :class="{'uploadty-disabled':disabled}">
       <template>
         <div v-if="isImageComp">
@@ -37,6 +39,15 @@
     <a-modal :visible="previewVisible" :footer="null" @cancel="handleCancel">
       <img alt="example" style="width: 100%" :src="previewImage" />
     </a-modal>
+
+    <j-modal
+      title="pdf预览"
+      :width="`1000px`"
+      :visible.sync="pdfVisible"
+      switchFullscreen
+      cancelText="关闭">
+      <PdfViewer :source="pdfUrl" />
+    </j-modal>
   </div>
 </template>
 
@@ -45,6 +56,7 @@
   import Vue from 'vue'
   import { ACCESS_TOKEN } from "@/store/mutation-types"
   import { getFileAccessHttpUrl } from '@/api/manage';
+  import PdfViewer from '@comp/PdfViewer/PdfViewer';
 
   const FILE_TYPE_ALL = "all"
   const FILE_TYPE_IMG = "image"
@@ -61,8 +73,11 @@
   }
   export default {
     name: 'JUpload',
+    components:{PdfViewer},
     data(){
       return {
+        pdfVisible: false,
+        pdfUrl:'',
         uploadAction:window._CONFIG['domianURL']+"/sys/common/upload",
         headers:{},
         fileList: [],
@@ -314,9 +329,14 @@
         if(this.fileType === FILE_TYPE_IMG){
           this.previewImage = file.url || file.thumbUrl;
           this.previewVisible = true;
-        }else{
-          location.href=file.url
+        }else if (file.url) {
+          this.pdfVisible = true;
+          this.pdfUrl = file.url;
         }
+      },
+      // 文件下载
+      handleDownload (file) {
+        location.href=file.url
       },
       handleCancel(){
         this.previewVisible = false;
@@ -388,7 +408,7 @@
           this.moveDisplay = 'none';
         });
       }
-    
+
       let picList = document.getElementById(this.containerId)?document.getElementById(this.containerId).getElementsByClassName('ant-upload-list-picture-card'):[];
       if(picList && picList.length>0){
         picList[0].addEventListener('mouseover',(ev)=>{
