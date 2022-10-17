@@ -46,7 +46,7 @@
           <div class="count-data-value">{{ data.checked }}</div>
         </div>
         <div>
-          <div class="count-data-label">故障次数</div>
+          <div class="count-data-label">不合格次数</div>
           <div class="count-data-value">{{ data.failure }}</div>
         </div>
       </div>
