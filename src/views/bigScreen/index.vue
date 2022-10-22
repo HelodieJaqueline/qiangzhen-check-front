@@ -64,6 +64,6 @@ export default {
 <style lang="less">
 .screen-bg {
   background-color: rgba(4, 7, 47, 1);
-  //overflow: hidden;
+  overflow: hidden;
 }
 </style>
