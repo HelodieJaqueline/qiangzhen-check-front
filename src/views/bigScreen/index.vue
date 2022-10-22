@@ -67,10 +67,12 @@ export default {
   //overflow: hidden;
   &::-webkit-scrollbar {
     width: 0;
+    opacity: 0;
   }
   &::-webkit-scrollbar-thumb {
     background-color: transparent;
     box-shadow: none !important;
+    opacity: 0;
   }
 }
 </style>
