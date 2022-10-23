@@ -64,6 +64,15 @@ export default {
 <style lang="less">
 .screen-bg {
   background-color: rgba(4, 7, 47, 1);
-  overflow: hidden;
+  //overflow: hidden;
+  &::-webkit-scrollbar {
+    width: 0;
+    opacity: 0;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: transparent;
+    box-shadow: none !important;
+    opacity: 0;
+  }
 }
 </style>
