@@ -249,11 +249,11 @@
             align:"center",
             dataIndex: 'checkTime'
           },
-          {
+/*           {
             title:'预估完成所需要的时间',
             align:"center",
             dataIndex: 'evaluateTime'
-          },
+          }, */
           {
             title: '操作',
             dataIndex: 'action',

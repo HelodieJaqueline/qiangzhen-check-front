@@ -100,13 +100,13 @@
               <j-date placeholder="请选择检测时间"  v-model="model.checkTime" :show-time="true" date-format="YYYY-MM-DD HH:mm:ss" style="width: 100%" :disabled="model.id"/>
             </a-form-model-item>
           </a-col>
-        </a-row>
+<!--        </a-row>
         <a-row>
           <a-col :span="8">
             <a-form-model-item label="预估时间" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="evaluateTime">
               <a-input-number v-model="model.evaluateTime" placeholder="请输入预估时间" style="width: 100%" :disabled="model.id"/>
             </a-form-model-item>
-          </a-col>
+          </a-col>-->
         </a-row>
         <a-divider>检验结果</a-divider>
         <a-row>
@@ -218,12 +218,6 @@
            ],
           checkDevice: [
             { required: true, message: '请输入检验设备!'},
-          ],
-          checkTime: [
-            { required: true, message: '请输入检测时间!'},
-          ],
-          evaluateTime: [
-            { required: true, message: '请输入预估时间!'},
           ],
           qualifiedStatus: [
             { required: true, message: '请输入合格状态(0:未知，1:合格，2:不合格)!'},

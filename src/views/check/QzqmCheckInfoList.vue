@@ -258,7 +258,7 @@
             dataIndex: 'checkTime'
           },
           {
-            title:'预估时间',
+            title:'持续时间',
             align:"center",
             dataIndex: 'evaluateTime'
           },

@@ -93,7 +93,7 @@ const columns = [
     dataIndex: 'deliveryTime',
   }, {
     width: 120,
-    title: '预估完成时间',
+    title: '持续时间',
     key: 'evaluateTime',
     dataIndex: 'evaluateTime',
   }, {
