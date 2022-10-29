@@ -52,8 +52,8 @@ import QzqmCheckInfoModal from '@views/check/modules/QzqmCheckInfoModal'
 
 const columns = [
   {
-    dataIndex: 'id',
-    key: 'id',
+    dataIndex: 'checkNo',
+    key: 'checkNo',
     title: '检测编号',
     width: 82,
   },
