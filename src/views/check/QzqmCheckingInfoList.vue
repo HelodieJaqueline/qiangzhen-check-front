@@ -4,7 +4,7 @@
     <div class="table-page-search-wrapper">
       <a-form layout="inline" @keyup.enter.native="searchQuery">
         <a-row :gutter="24">
-          <a-col :md="6" :sm="10">
+          <a-col :md="6" :sm="8">
             <a-form-item label="筛选" :labelCol="labelCol" :wrapperCol="wrapperCol">
               <a-range-picker
                 style="width: 210px"
@@ -16,20 +16,24 @@
               />
             </a-form-item>
           </a-col>
-          <a-col :md="6" :sm="8">
+          <a-col :md="5" :sm="8">
             <span style="float: left;overflow: hidden;" class="table-page-search-submitButtons">
               <a-button type="primary" @click="searchQuery" icon="search">筛选</a-button>
               <a-button type="primary" @click="searchReset" icon="reload" style="margin-left: 8px">重置</a-button>
             </span>
           </a-col>
 
-
-          <a-col :md="6" :sm="12">
-            <a-form-item label="搜索">
-              <j-input placeholder="请输入物料号查询" v-model="queryParam.materialCode"></j-input>
+          <a-col :md="4" :sm="8">
+            <a-form-item label="物料号">
+              <a-input placeholder="请输入物料号查询" v-model="queryParam.materialCode"></a-input>
             </a-form-item>
           </a-col>
-          <a-col :md="6" :sm="8">
+          <a-col :md="4" :sm="8">
+            <a-form-item label="图号">
+              <a-input placeholder="请输入图号查询" v-model="queryParam.productDraw"></a-input>
+            </a-form-item>
+          </a-col>
+          <a-col :md="5" :sm="8">
             <span style="float: left;overflow: hidden;" class="table-page-search-submitButtons">
               <a-button type="primary" @click="searchQuery" icon="search">搜索</a-button>
               <a-button type="primary" @click="searchReset" icon="reload" style="margin-left: 8px">重置</a-button>
