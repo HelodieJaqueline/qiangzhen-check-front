@@ -185,7 +185,7 @@ export default {
       try {
         const { result } = await getBigScreenTable({
           pageNum: this.pageNum,
-          pageSize: 20,
+          pageSize: 100,
         });
         const { current, records } = result;
         this.dataSource = records;
